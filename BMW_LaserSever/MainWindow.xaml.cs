@@ -67,7 +67,16 @@ namespace BMW_LaserSever
 
             LaserDataReceiver.Instance.InitReceiver();
 
-            StartDispatherTimer();   
+            StartDispatherTimer();
+
+            LaserDataHandler.Instance.DetectedPerson += Instance_DetectedPerson;
+        }
+
+        void Instance_DetectedPerson(object sender, AlarmEventArg arg)
+        {
+            logger.Debug("Hello, " + arg.Detected.ToString());
+
+            alarm.Volume = arg.Detected ? 100 : 0;
         }
 
         /// <summary>

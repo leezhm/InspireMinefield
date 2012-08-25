@@ -26,6 +26,23 @@ using System.Runtime.Serialization.Formatters.Binary;  // for BinaryFormatter
 
 namespace BMW_LaserSever
 {
+    public class AlarmEventArg : System.EventArgs
+    {
+        public bool Detected { get; set; }
+
+        public AlarmEventArg(bool isDetected) : base()
+        {
+            Detected = isDetected;
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="arg"></param>
+    public delegate void DetectPersonEventHandler(object sender, AlarmEventArg arg);
+
     [System.Runtime.InteropServices.GuidAttribute("96A2E954-26AA-4C12-9740-123A762D7E22")]
     public class LaserDataHandler
     {
@@ -55,6 +72,8 @@ namespace BMW_LaserSever
 
         public bool DetectPerson { get; set; }
 
+        private System.Windows.Controls.MediaElement Alarm = null;
+
         /// <summary>
         /// Singleton class
         /// </summary>
@@ -82,6 +101,20 @@ namespace BMW_LaserSever
         public void Close()
         {
         }
+
+        #region Detected Event
+        public event DetectPersonEventHandler DetectedPerson;
+
+        public void SendEvent(bool detected)
+        {
+            if (null != DetectedPerson)
+            {
+                AlarmEventArg arg = new AlarmEventArg(detected);
+                DetectedPerson(this, arg);
+            }
+        }
+        #endregion // Detected Event
+
 
         #region Parse all data
         /// <summary>
@@ -201,14 +234,34 @@ namespace BMW_LaserSever
                 DetectPerson = true;
             }
 
-            //PlayOrStopSound();
+           // PlayOrStopSound();
+
+            SendEvent(DetectPerson);
         }
 
         #region Sound
         void PlayOrStopSound()
         {
-            System.Media.SoundPlayer sndPlayer = new System.Media.SoundPlayer(Environment.CurrentDirectory + @"/ir_begin.wav");
-            sndPlayer.PlaySync();
+            //System.Media.SoundPlayer sndPlayer = new System.Media.SoundPlayer(Environment.CurrentDirectory + @"/ir_begin.wav");
+            //sndPlayer.PlaySync();
+
+            if (DetectPerson)
+            {
+                if (null == Alarm)
+                {
+                    Alarm = new System.Windows.Controls.MediaElement();
+                    Alarm.Source = new Uri(Environment.CurrentDirectory + @"/ir_begin.wav");
+                }
+
+                Alarm.Play();
+            }
+            else
+            {
+                if (null != Alarm)
+                {
+                    Alarm.Pause();
+                }
+            }
         }
         #endregion // Sound
 
