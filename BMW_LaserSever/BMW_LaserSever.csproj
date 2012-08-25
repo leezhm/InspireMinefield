@@ -66,23 +66,11 @@
     <ApplicationIcon>BMW_LaserSever.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Surface, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Surface.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Surface.Presentation, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Surface.Presentation.Design, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Surface.Presentation.Generic, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Surface.Simulation.Framework">
       <HintPath>libs\Microsoft.Surface.Simulation.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Surface.Simulation.SurfaceInput">
       <HintPath>libs\Microsoft.Surface.Simulation.SurfaceInput.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.Modeling.SDK.Integration.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Nito.Async">
-      <HintPath>..\..\..\..\..\NitoAsync\Nito.Async.Sockets\bin\x86\Release\Nito.Async.dll</HintPath>
-    </Reference>
-    <Reference Include="Nito.Async.Sockets">
-      <HintPath>..\..\..\..\..\NitoAsync\Nito.Async.Sockets\bin\x86\Release\Nito.Async.Sockets.dll</HintPath>
     </Reference>
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>

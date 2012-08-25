@@ -11,16 +11,7 @@
         <Scan Start="0" End="180" />
 
         <!-- Data we need -->
-        <Data Start="40" FirstSpliter="120" SecondSpliter="150" End="160" Correction="0.05"/>
-
-        <!-- Blob -->
-        <Blob Max="40" Min="15" />
-
-        <!-- Rectangle -->
-        <Window>
-          <Rectangle MaxWidth="922" MinWidth="-95" MaxHeight="1370" MinHeight="770" PlunIn="400"/>
-          <Resolution Width="2732" Height="768" />
-        </Window>
+        <Data  Start="40" End="160" Correction="0.05"/>
       </Config>
 
       <Config Name="RightToLeft">
@@ -28,56 +19,9 @@
         <Scan Start="-45" End="225" />
         
         <!-- Data we need -->
-        <Data Start="25" FirstSpliter="60" SecondSpliter="85" End="120" Correction="0.5"/>
-        
-        <!-- Blob -->
-        <Blob Max="40" Min="20" />
-        
-        <!-- Rectangle -->
-        <Window>
-          <Rectangle MaxWidth="734.5" MinWidth="-251.5" MaxHeight="1358" MinHeight="775" PlunIn="400"/>
-          <Resolution Width="2732" Height="768" />
-        </Window>
+        <Data Start="25" End="120" Correction="0.5"/>
       </Config>
       
     </Setting>
   </Laser>
-
-  <Section>
-    <!-- For Office Mockup -->
-    <City Name="Yantai"    Angle="27.654" Distance="1885"/>
-    <City Name="Beijing"   Angle="30.513" Distance="1694"/>
-    <City Name="Shanghai"  Angle="35.079" Distance="2135"/>
-    <City Name="Wuxi"      Angle="35.274" Distance="2047"/>
-    <City Name="Wuyuan"    Angle="40.581" Distance="2105"/>
-    <City Name="Luoyang"   Angle="42.874" Distance="1653"/>
-    <City Name="Nanchang"  Angle="43.214" Distance="2072"/>
-    <City Name="Shenzhen"  Angle="50.502" Distance="2266"/>
-    <City Name="Zhuhai"    Angle="51.794" Distance="2319"/>
-    <City Name="Guangzhou" Angle="52.007" Distance="2252"/>
-    <City Name="Fenghuang" Angle="52.054" Distance="1901"/>
-    
-    <City Name="Preview"    Angle="69.406" Distance="1713"/>
-    <City Name="Emotions"   Angle="76.068" Distance="1671"/>
-    <City Name="Challenges" Angle="82.771" Distance="1639"/>
-    <City Name="Highlights" Angle="89.518" Distance="1649"/>
-
-    <!-- For On-Site Mockup -->
-    <!--<City Name="Yantai"    Angle="147.948" Distance="1858"/>
-    <City Name="Beijing"   Angle="145.959" Distance="1556"/>
-    <City Name="Shanghai"  Angle="141.130" Distance="2131"/>
-    <City Name="Wuxi"      Angle="140.693" Distance="2026"/>
-    <City Name="Wuyuan"    Angle="134.932" Distance="2136"/>
-    <City Name="Luoyang"   Angle="132.172" Distance="1756"/>
-    <City Name="Nanchang"  Angle="132.612" Distance="2166"/>
-    <City Name="Shenzhen"  Angle="125.403" Distance="2351"/>
-    <City Name="Zhuhai"    Angle="124.147" Distance="2364"/>
-    <City Name="Guangzhou" Angle="123.671" Distance="2312"/>
-    <City Name="Fenghuang" Angle="123.485" Distance="1967"/>
-
-    <City Name="Preview"    Angle="90.626" Distance="1845"/>
-    <City Name="Emotions"   Angle="82.342" Distance="1787"/>
-    <City Name="Challenges" Angle="74.137" Distance="1858"/>
-    <City Name="Highlights" Angle="66.254" Distance="1825"/>-->
-  </Section>
 </Luxoom>

@@ -61,39 +61,9 @@ namespace BMW_LaserSever
         public static double dataEnd = 0;
 
         /// <summary>
-        /// First Data Apliter Angle
-        /// </summary>
-        public static double firstDataSpliter = 0;
-
-        /// <summary>
-        /// Second Data Apliter Angle
-        /// </summary>
-        public static double secondDataSpliter = 0;
-
-        /// <summary>
         /// Angluar Correction
         /// </summary>
         public static double angluarCorrection = 0;
-
-        /// <summary>
-        /// Current Resolution
-        /// </summary>
-        public static double screenWidth = 0;
-        public static double screenHeight = 0;
-
-        /// <summary>
-        /// For Rectangle
-        /// </summary>
-        public static double maxWidth = 0;
-        public static double minWidth = 0;
-        public static double maxHeight = 0;
-        public static double minHeight = 0;
-
-        /// <summary>
-        /// Size of Blob
-        /// </summary>
-        public static double maxBlob = 0;
-        public static double minBlob = 0;
 
         /// <summary>
         /// 
@@ -156,50 +126,10 @@ namespace BMW_LaserSever
                             XmlNode data = config.SelectSingleNode("Data");
                             LaserSetting.dataStart = double.Parse(data.Attributes["Start"].Value);
                             LaserSetting.dataEnd = double.Parse(data.Attributes["End"].Value);
-                            LaserSetting.firstDataSpliter = double.Parse(data.Attributes["FirstSpliter"].Value);
-                            LaserSetting.secondDataSpliter = double.Parse(data.Attributes["SecondSpliter"].Value);
                             LaserSetting.angluarCorrection = double.Parse(data.Attributes["Correction"].Value);
-
-                            // Blob
-                            XmlNode blob = config.SelectSingleNode("Blob");
-                            LaserSetting.maxBlob = double.Parse(blob.Attributes["Max"].Value);
-                            LaserSetting.minBlob = double.Parse(blob.Attributes["Min"].Value);
-
-                            // Window.Rectangel
-                            XmlNode rectangle = config.SelectSingleNode("Window/Rectangle");
-                            LaserSetting.maxWidth = double.Parse(rectangle.Attributes["MaxWidth"].Value);
-                            LaserSetting.minWidth = double.Parse(rectangle.Attributes["MinWidth"].Value);
-                            LaserSetting.maxHeight = double.Parse(rectangle.Attributes["MaxHeight"].Value);
-                            LaserSetting.minHeight = double.Parse(rectangle.Attributes["MinHeight"].Value);
-                            
-                            LaserSetting.plunIn = double.Parse(rectangle.Attributes["PlunIn"].Value);
-
-                            // Window.Rectangel
-                            XmlNode resolution = config.SelectSingleNode("Window/Resolution");
-                            LaserSetting.screenWidth = double.Parse(resolution.Attributes["Width"].Value);
-                            LaserSetting.screenHeight = double.Parse(resolution.Attributes["Height"].Value);
                         }
                     }
                 }
-
-                #region Section
-                XmlNodeList sectionList = xmlDoc.SelectNodes("/Luxoom/Section/City");
-                if (null != sectionList)
-                {
-                    foreach (XmlNode city in sectionList)
-                    {
-                        Section section = new Section();
-                        section.Angle = double.Parse(city.Attributes["Angle"].Value);
-                        section.Distance = double.Parse(city.Attributes["Distance"].Value);
-
-                        sectionDict.Add(city.Attributes["Name"].Value, section);
-                    }
-                }
-
-                // Print
-                LaserSetting.Print();
-
-                #endregion // Section
             }
             catch (Exception expt)
             {
@@ -233,15 +163,6 @@ namespace BMW_LaserSever
                             // Data Setting
                             XmlElement data = (XmlElement)config.SelectSingleNode("Data");
                             data.SetAttribute("Correction", LaserSetting.angluarCorrection.ToString());
-
-                            // Window.Rectange
-                            XmlElement rectangle = (XmlElement)config.SelectSingleNode("Window/Rectangle");
-
-                            // set new value
-                            rectangle.SetAttribute("MaxWidth", LaserSetting.maxWidth.ToString());
-                            rectangle.SetAttribute("MinWidth", LaserSetting.minWidth.ToString());
-                            rectangle.SetAttribute("MaxHeight", LaserSetting.maxHeight.ToString());
-                            rectangle.SetAttribute("MinHeight", LaserSetting.minHeight.ToString());
                         }
                     }
                 }
@@ -261,18 +182,13 @@ namespace BMW_LaserSever
         {
             string msg = "Laser Scan Server IP --> " + LaserSetting.ipAddress + "\n" +
              "Laser Scan Server Listenning Port --> " + LaserSetting.port + "\n" +
-             "Laser Direction --> " + LaserSetting.direction + "\n" + 
+             "Laser Direction --> " + LaserSetting.direction + "\n" +
              "Timer Interval --> " + LaserSetting.timerInterval + "\n" +
-             "Blob Size --> " + LaserSetting.blobSize + "\n" + 
-             "Whole Screen --> minWidth " + LaserSetting.minWidth + "  maxWidth " + LaserSetting.maxWidth +
-             "  minHeight " + LaserSetting.minHeight + "  maxHeight " + LaserSetting.maxHeight + " --> " +
-             "Resolution " + LaserSetting.screenWidth + " X " + LaserSetting.screenHeight + "\n\n" +
+             "Blob Size --> " + LaserSetting.blobSize + "\n" +
 
              "Start Angleb --> " + LaserSetting.scanStart + "\n" + "End Angle --> " + LaserSetting.scanEnd + "\n" +
              "Valid Start Angle --> " + LaserSetting.dataStart + "\n" + "Valid End Angle --> " + LaserSetting.dataEnd + "\n" +
-             "Valid First Spliter Angle --> " + LaserSetting.firstDataSpliter + "\n" + "Valid Second Spliter Angle --> " + LaserSetting.secondDataSpliter + "\n" +
-             "Angular Correction --> " + LaserSetting.angluarCorrection + "\n" +
-             "Min Blob --> " + LaserSetting.minBlob + "\n" + "Max Blob --> " + LaserSetting.maxBlob;
+             "Angular Correction --> " + LaserSetting.angluarCorrection + "\n";
 
             logger.Debug(msg);
         }
