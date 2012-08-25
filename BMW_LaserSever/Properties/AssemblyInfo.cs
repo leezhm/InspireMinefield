@@ -7,11 +7,11 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LaserServer")]
+[assembly: AssemblyTitle("BMW_LaserServer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("LaserServer")]
+[assembly: AssemblyCompany("www.luxoom.cn")]
+[assembly: AssemblyProduct("BMW_LaserServer")]
 [assembly: AssemblyCopyright("Copyright © Leezhm(at)126DotCom")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

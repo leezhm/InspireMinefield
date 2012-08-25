@@ -7,7 +7,7 @@ using System.Windows;
 
 using System.Windows.Threading;      // for
 
-namespace LaserServer
+namespace BMW_LaserSever
 {
     /// <summary>
     /// Interaction logic for App.xaml

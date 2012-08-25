@@ -20,7 +20,7 @@ using System.Net.Sockets;
 
 using System.Windows;
 
-namespace LaserServer
+namespace BMW_LaserSever
 {
     public sealed class LaserDataReceiver
     {
@@ -127,10 +127,6 @@ namespace LaserServer
                     responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
 
                     LaserDataHandler.Instance.HandleMeasuredData(ref responseData);
-
-                    //logger.Debug(responseData + "\n <--- One Time (Datas " + responseData.Length + ") --->  \n");
-
-                    ((MainWindow)Application.Current.Windows[0]).SetDebugShow();
                 }
                 catch (Exception expt)
                 {
