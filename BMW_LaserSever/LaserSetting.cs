@@ -17,7 +17,7 @@ using System.Text;
 
 using System.Xml;
 
-namespace LaserServer
+namespace BMW_LaserSever
 {
     public class LaserSetting
     {

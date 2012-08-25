@@ -17,7 +17,7 @@ using System.Text;
 //
 
 
-namespace LaserServer
+namespace BMW_LaserSever
 {
     class LaserDataHeader
     {
