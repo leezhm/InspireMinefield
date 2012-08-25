@@ -65,25 +65,9 @@ namespace BMW_LaserSever
         /// </summary>
         public static double angluarCorrection = 0;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public static Boolean IsCalibration = false;
+        public static double diameter = 0;
 
         #endregion // Congfig
-
-        #region Section
-        public struct Section
-        {
-            public double Angle;
-            public double Distance;
-        }
-
-        /// <summary>
-        /// Store all section information
-        /// </summary>
-        public static Dictionary<string, Section> sectionDict = new Dictionary<string, Section>();
-        #endregion // Section
 
         /// <summary>
         /// Load Laser System Configuration
@@ -124,6 +108,8 @@ namespace BMW_LaserSever
 
                             // Data Setting
                             XmlNode data = config.SelectSingleNode("Data");
+
+                            LaserSetting.diameter = double.Parse(data.Attributes["diameter"].Value);
                             LaserSetting.dataStart = double.Parse(data.Attributes["Start"].Value);
                             LaserSetting.dataEnd = double.Parse(data.Attributes["End"].Value);
                             LaserSetting.angluarCorrection = double.Parse(data.Attributes["Correction"].Value);
@@ -162,6 +148,7 @@ namespace BMW_LaserSever
                         {
                             // Data Setting
                             XmlElement data = (XmlElement)config.SelectSingleNode("Data");
+                            data.SetAttribute("diameter", LaserSetting.diameter.ToString());
                             data.SetAttribute("Correction", LaserSetting.angluarCorrection.ToString());
                         }
                     }

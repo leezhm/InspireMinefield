@@ -26,44 +26,6 @@ using System.Runtime.Serialization.Formatters.Binary;  // for BinaryFormatter
 
 namespace BMW_LaserSever
 {
-    struct Point3D
-    {
-        public double distance;
-        public double xPos;
-        public double yPos;
-
-        /// <summary>
-        /// Indicate whether is the same point
-        /// </summary>
-        public int session;
-
-        /// <summary>
-        /// avarage angle
-        /// </summary>
-        public uint angele;
-
-        public bool isUseful;
-
-        public void Clear()
-        {
-            this.distance = 0;
-            this.xPos = 0;
-            this.yPos = 0;
-            this.session = -1;
-            this.angele = 0;
-
-            this.isUseful = false;
-        }
-
-        public override string ToString()
-        {
-            string msg = "Session --> " + this.isUseful + " " + this.session + "  " + this.angele + " "
-                         + this.distance + "  " + this.xPos + "  " + this.yPos;
-
-            return msg;
-        }
-    }
-
     [System.Runtime.InteropServices.GuidAttribute("96A2E954-26AA-4C12-9740-123A762D7E22")]
     public class LaserDataHandler
     {
@@ -90,6 +52,8 @@ namespace BMW_LaserSever
         /// Store all the valid data for TUIO
         /// </summary>
         private ArrayList alValidData = new ArrayList();
+
+        public bool DetectPerson { get; set; }
 
         /// <summary>
         /// Singleton class
@@ -194,13 +158,20 @@ namespace BMW_LaserSever
             //logger.Debug("begin = " + begin + "  end = " + end + "  Count = " + dataList.Length + " DataStart=" + LaserSetting.dataStart +
             //             "  ScanStart=" + LaserSetting.scanStart + " AngularStepWidth=" + header.AngularStepWidth);
 
+            double xPos = 0.0f;
+            double yPos = 0.0f;
+            double distance = 0.0f;
+
+            double radius = LaserSetting.diameter / 2;
+
+            // reset
+            DetectPerson = false;
+
             for (; begin <= end; ++ begin)
             {
-                Point3D pos = new Point3D();
-
                 try
                 {
-                    pos.distance = uint.Parse(dataList[begin], NumberStyles.HexNumber);
+                    distance = uint.Parse(dataList[begin], NumberStyles.HexNumber);
                 }
                 catch (FormatException fexpt)
                 {
@@ -208,8 +179,7 @@ namespace BMW_LaserSever
                     return;
                 }
 
-                if (3200 < pos.distance || 800 > pos.distance) // less than 2000mm
-                //if (2400 < pos.distance || 800 > pos.distance) // less than 2000mm
+                if (LaserSetting.diameter < distance) // less than LaserSetting.diameter
                     continue;
 
                 double angle = (double)(begin - 26) * header.AngularStepWidth / 10000 - Math.Abs(LaserSetting.scanStart);
@@ -217,19 +187,30 @@ namespace BMW_LaserSever
                 double currentAngle = (double)(angle - LaserSetting.angluarCorrection) * Math.PI / 180;
 
 
-                pos.xPos = (double)(pos.distance * Math.Cos(currentAngle));
-                //if (LaserSetting.minWidth > pos.xPos || LaserSetting.maxWidth < pos.xPos) continue;
+                xPos = (double)(distance * Math.Cos(currentAngle));
+                if ((LaserSetting.diameter / 2) < Math.Abs(xPos) || Math.Abs(xPos) <= 0) continue;
 
+                yPos = (double)(distance * Math.Sin(currentAngle));
+                if (LaserSetting.diameter < Math.Abs(yPos) || yPos <= 0) continue;
 
-                pos.yPos = (double)(pos.distance * Math.Sin(currentAngle));
-                //if (LaserSetting.minHeight > Math.Abs(pos.yPos) || LaserSetting.maxHeight < Math.Abs(pos.yPos)) continue;
-                logger.Debug("x = " + pos.xPos + "y = " + pos.yPos + "  angular=" + angle);
+                if (Math.Pow(radius, 2.0) < (Math.Pow(xPos, 2.0) + Math.Pow(Math.Abs(yPos - LaserSetting.diameter / 2), 2.0))) continue;
 
-                System.Media.SoundPlayer sndPlayer = new System.Media.SoundPlayer(Environment.CurrentDirectory + @"/ir_begin.wav");
-                sndPlayer.PlaySync();
-            
+                logger.Debug("distance = " + distance + " x = " + xPos + "(" + Math.Abs(Math.Sin(2 * currentAngle)) * LaserSetting.diameter / 2 +
+                             ")" + "  y = " + yPos + "(" + (Math.Abs(Math.Cos(2 * currentAngle)) + 1) * LaserSetting.diameter / 2 + ")" + "  angular=" + angle);
+
+                DetectPerson = true;
             }
+
+            //PlayOrStopSound();
         }
+
+        #region Sound
+        void PlayOrStopSound()
+        {
+            System.Media.SoundPlayer sndPlayer = new System.Media.SoundPlayer(Environment.CurrentDirectory + @"/ir_begin.wav");
+            sndPlayer.PlaySync();
+        }
+        #endregion // Sound
 
         #endregion // Parse all data
     }
