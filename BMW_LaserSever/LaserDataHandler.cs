@@ -165,7 +165,7 @@ namespace BMW_LaserSever
             }
 
             // print the header
-            //logger.Debug(header.PrintMeasuredDataHeader);
+            logger.Debug(header.PrintMeasuredDataHeader);
 
             // Handle Data
             HandleDataByFilter(); 
