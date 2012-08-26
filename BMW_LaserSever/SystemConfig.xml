@@ -4,14 +4,20 @@
     <!-- Laser Scan Information -->
     <Server IP="192.168.0.245" Port="2112" />
     
-    <Setting Direction="LeftToRight" TimerInterval="25" BlobSize="5">
+    <Setting Direction="LeftToRight" TimerInterval="25">
 
       <Config Name="LeftToRight">
         <!-- Scaner Information -->
         <Scan Start="0" End="180" />
 
         <!-- Data we need -->
-        <Data diameter="3000" Start="0" End="180" Correction="0"/>
+        <Data Diameter="3000" Start="0" End="180" Correction="0"/>
+
+        <LeftTop Start="86.5" End="87.5"/>
+        <RightTop Start="87.75" End="88.75"/>
+        <LeftBottom Start="98" End="98.5"/>
+        <RightBottom Start="98.5" End="99"/>
+        
       </Config>
 
       <Config Name="RightToLeft">
@@ -19,7 +25,12 @@
         <Scan Start="0" End="180" />
         
         <!-- Data we need -->
-        <Data diameter="3000" Start="0" End="180" Correction="0.05"/>
+        <Data Diameter="3000" Start="0" End="180" Correction="0.05"/>
+
+        <LeftTop Start="90.25" End="91.75"/>
+        <RightTop Start="90.25" End="91.75"/>
+        <LeftBottom Start="90.25" End="91.75"/>
+        <RightBottom Start="90.25" End="91.75"/>
       </Config>
       
     </Setting>

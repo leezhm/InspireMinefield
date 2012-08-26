@@ -8,11 +8,11 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("BMW_LaserServer")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("All Right Reserved")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("www.luxoom.cn")]
 [assembly: AssemblyProduct("BMW_LaserServer")]
-[assembly: AssemblyCopyright("Copyright © Leezhm(at)126DotCom")]
+[assembly: AssemblyCopyright("Copyright © luxoom.cn")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -54,3 +54,4 @@ using System.Windows;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: NeutralResourcesLanguageAttribute("zh-CN")]
+[assembly: GuidAttribute("63D19D09-EEEA-43F0-976A-19C8E6302DD5")]

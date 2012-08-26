@@ -6,10 +6,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
         mc:Ignorable="d" Focusable="True"
-        Height="600" Width="800"
-        Title="Laser Server (Developed by luxoom.cn)"
+        Height="480" Width="640" Background="AliceBlue"
+        Title="Inspire Minefiele (Developed by luxoom.cn)"
         Name="mainWindow">
-    <Grid>
         <StackPanel>
             <MediaElement Name="alarm" Volume="0" >
                 <MediaElement.Triggers>
@@ -25,7 +24,61 @@
                 </MediaElement.Triggers>
             </MediaElement>
 
-        </StackPanel>
+        <Grid ShowGridLines="True" Height="448">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="75" />
+                <RowDefinition Height="195" />
+                <RowDefinition Height="75" />
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="260" />
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="230" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <Label Grid.Row="0" Grid.Column="0" Name="laserIP" Content="Laser IP : " FontSize="16" Margin="0,10,0,11" VerticalAlignment="Center" HorizontalAlignment="Left" Height="30" Width="244" />
+            <Label Grid.Row="0" Name="laserPort" Content="Port : " FontSize="16" Margin="274,10,0,11" VerticalAlignment="Center" HorizontalAlignment="Left" Height="30" Width="134" />
+            <Label Grid.Row="0" Name="timerInterval" Content="Timer Interval : " FontSize="16" Margin="425,10,0,11" VerticalAlignment="Center" HorizontalAlignment="Left" Height="30" Width="178" />
 
-    </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="260" />
+                    <ColumnDefinition Width="169" />
+                    <ColumnDefinition Width="211" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <Label Grid.Row="1" Grid.Column="0" Name="laserDirection" Content="Direction" FontSize="16"  Margin="0,11,0,10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="244" Height="30"/>
+            <Label Grid.Row="1" Name="laserStart" Content="Scan Start : " FontSize="16" Margin="274,11,0,10" HorizontalAlignment="Left" VerticalAlignment="Center" Height="30" Width="134" />
+            <Label Grid.Row="1" Name="laserEnd" Content="Scan End : " FontSize="16" Margin="425,11,0,10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="129" Height="30"/>
+                            
+            <Label Grid.Row="2" Name="labelDiameter" Content="Diameter" Height="41" Width="124" FontSize="24" Canvas.Left="181" Canvas.Top="56" Margin="193,17,315,18" />
+            <TextBox Grid.Row="2" Name="txtDiameter" Height="30" Width="100" FontSize="24" Canvas.Left="314" Canvas.Top="62" Text="4000" Margin="317,21,215,25" />
+       
+            <Label Grid.Row="3" Content="LeftTop Start" FontSize="24" Margin="0,13,467,140" />
+            <TextBox Grid.Row="3" Name="leftTopStart" Text="0" FontSize="24" Height="30" Margin="187,18,331,147"/>
+            <Label Grid.Row="3" Content="LeftTop End" FontSize="24" Margin="0,49,467,104" />
+            <TextBox Grid.Row="3" Name="leftTopEnd" Text="0" FontSize="24" Height="30" Margin="187,54,331,111"/>
+
+            <Label Grid.Row="3" Content="LeftBottom Start" FontSize="24" Margin="0,106,421,47" />
+            <TextBox Grid.Row="3" Name="leftBottomStart" Text="0" FontSize="24" Height="30" Margin="211,112,331,53"/>
+            <Label Grid.Row="3" Content="LeftBottom End" FontSize="24" Margin="0,144,432,9" />
+            <TextBox Grid.Row="3" Name="leftBottomEnd" Text="0" FontSize="24" Height="30" Margin="211,148,331,17"/>
+            
+            <Label Grid.Row="3" Content="RightTop Start" FontSize="24" Margin="307,13,141,140" />
+            <TextBox Grid.Row="3" Name="rightTopStart" Text="0" FontSize="24" Height="30" Margin="513,18,5,147"/>
+            <Label Grid.Row="3" Content="RightTop End" FontSize="24" Margin="307,49,141,104" />
+            <TextBox Grid.Row="3" Name="rightTopEnd" Text="0" FontSize="24" Height="30" Margin="511,54,5,111"/>
+
+
+            <Label Grid.Row="3" Content="RightBottom Start" FontSize="24" Margin="307,106,93,47" />
+            <TextBox Grid.Row="3" Name="rightBottomStart" Text="0" FontSize="24" Height="30" Margin="535,112,5,53" RenderTransformOrigin="0.456,0.2"/>
+            <Label Grid.Row="3" Content="RightBottom End" FontSize="24" Margin="312,144,88,9" />
+            <TextBox Grid.Row="3" Name="rightBottomEnd" Text="0" FontSize="24" Height="30" Margin="535,150,5,15"/>
+            <Button Grid.Row="4" Name="btnOK" Content="OK" FontSize="24" HorizontalAlignment="Left" Margin="271,16,0,0"  VerticalAlignment="Top" Width="77" Height="42" Click="btnOK_Click"/>
+        </Grid>
+        </StackPanel>
 </Window>

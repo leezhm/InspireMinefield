@@ -38,8 +38,6 @@ namespace BMW_LaserSever
         public static string direction = "";
         public static int timerInterval = 0;
 
-        public static int blobSize = 0;
-
         /// <summary>
         /// Scan Start Angle
         /// </summary>
@@ -67,6 +65,15 @@ namespace BMW_LaserSever
 
         public static double diameter = 0;
 
+        public static double leftTopStart = 0;
+        public static double leftTopEnd = 0;
+        public static double leftBottomStart = 0;
+        public static double leftBottomEnd = 0;
+        public static double rightTopStart = 0;
+        public static double rightTopEnd = 0;
+        public static double rightBottomStart = 0;
+        public static double rightBottomEnd = 0;
+
         #endregion // Congfig
 
         /// <summary>
@@ -90,7 +97,6 @@ namespace BMW_LaserSever
                 XmlNode setting = xmlDoc.SelectSingleNode("/Luxoom/Laser/Setting");
                 LaserSetting.direction = setting.Attributes["Direction"].Value;
                 LaserSetting.timerInterval = int.Parse(setting.Attributes["TimerInterval"].Value);
-                LaserSetting.blobSize = int.Parse(setting.Attributes["BlobSize"].Value);
 
                 // For Configuration
                 XmlNodeList configList = xmlDoc.SelectNodes("/Luxoom/Laser/Setting/Config");
@@ -109,10 +115,30 @@ namespace BMW_LaserSever
                             // Data Setting
                             XmlNode data = config.SelectSingleNode("Data");
 
-                            LaserSetting.diameter = double.Parse(data.Attributes["diameter"].Value);
+                            LaserSetting.diameter = double.Parse(data.Attributes["Diameter"].Value);
                             LaserSetting.dataStart = double.Parse(data.Attributes["Start"].Value);
                             LaserSetting.dataEnd = double.Parse(data.Attributes["End"].Value);
                             LaserSetting.angluarCorrection = double.Parse(data.Attributes["Correction"].Value);
+
+                            // left top
+                            XmlNode lefttop = config.SelectSingleNode("LeftTop");
+                            LaserSetting.leftTopStart = double.Parse(lefttop.Attributes["Start"].Value);
+                            LaserSetting.leftTopEnd = double.Parse(lefttop.Attributes["End"].Value);
+
+                            // left bottom
+                            XmlNode leftbottom = config.SelectSingleNode("LeftBottom");
+                            LaserSetting.leftBottomStart = double.Parse(leftbottom.Attributes["Start"].Value);
+                            LaserSetting.leftBottomEnd = double.Parse(leftbottom.Attributes["End"].Value);
+
+                            // right top
+                            XmlNode righttop = config.SelectSingleNode("RightTop");
+                            LaserSetting.rightTopStart = double.Parse(righttop.Attributes["Start"].Value);
+                            LaserSetting.rightTopEnd = double.Parse(righttop.Attributes["End"].Value);
+
+                            // right bottom
+                            XmlNode rightbottom = config.SelectSingleNode("RightBottom");
+                            LaserSetting.rightBottomStart = double.Parse(rightbottom.Attributes["Start"].Value);
+                            LaserSetting.rightBottomEnd = double.Parse(rightbottom.Attributes["End"].Value);
                         }
                     }
                 }
@@ -148,8 +174,28 @@ namespace BMW_LaserSever
                         {
                             // Data Setting
                             XmlElement data = (XmlElement)config.SelectSingleNode("Data");
-                            data.SetAttribute("diameter", LaserSetting.diameter.ToString());
+                            data.SetAttribute("Diameter", LaserSetting.diameter.ToString());
                             data.SetAttribute("Correction", LaserSetting.angluarCorrection.ToString());
+
+                            // left top
+                            XmlElement lefttop = (XmlElement)config.SelectSingleNode("LeftTop");
+                            lefttop.SetAttribute("Start", LaserSetting.leftTopStart.ToString());
+                            lefttop.SetAttribute("End", LaserSetting.leftTopEnd.ToString());
+
+                            // left bottom
+                            XmlElement leftbottom = (XmlElement)config.SelectSingleNode("LeftBottom");
+                            leftbottom.SetAttribute("Start", LaserSetting.leftBottomStart.ToString());
+                            leftbottom.SetAttribute("End", LaserSetting.leftBottomEnd.ToString());
+
+                            // right top
+                            XmlElement righttop = (XmlElement)config.SelectSingleNode("RightTop");
+                            righttop.SetAttribute("Start", LaserSetting.rightTopStart.ToString());
+                            righttop.SetAttribute("End", LaserSetting.rightTopEnd.ToString());
+
+                            // right bottom
+                            XmlElement rightbottom = (XmlElement)config.SelectSingleNode("RightBottom");
+                            rightbottom.SetAttribute("Start", LaserSetting.rightBottomStart.ToString());
+                            rightbottom.SetAttribute("End", LaserSetting.rightBottomEnd.ToString());
                         }
                     }
                 }
@@ -171,7 +217,6 @@ namespace BMW_LaserSever
              "Laser Scan Server Listenning Port --> " + LaserSetting.port + "\n" +
              "Laser Direction --> " + LaserSetting.direction + "\n" +
              "Timer Interval --> " + LaserSetting.timerInterval + "\n" +
-             "Blob Size --> " + LaserSetting.blobSize + "\n" +
 
              "Start Angleb --> " + LaserSetting.scanStart + "\n" + "End Angle --> " + LaserSetting.scanEnd + "\n" +
              "Valid Start Angle --> " + LaserSetting.dataStart + "\n" + "Valid End Angle --> " + LaserSetting.dataEnd + "\n" +

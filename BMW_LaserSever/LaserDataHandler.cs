@@ -183,7 +183,7 @@ namespace BMW_LaserSever
 
             if (end >= dataList.Length || 2500 != header.AngularStepWidth)
             {
-                logger.Fatal("Angular Step Width is " + header.AngularStepWidth + " != 2500!!!");
+                logger.Fatal("Angular Step Width is " + header.AngularStepWidth + " != 2500!!! end(" + end +  ") >= dataList.Length(" + dataList.Length + ")");
 
                 return;
             }
@@ -228,42 +228,27 @@ namespace BMW_LaserSever
 
                 if (Math.Pow(radius, 2.0) < (Math.Pow(xPos, 2.0) + Math.Pow(Math.Abs(yPos - LaserSetting.diameter / 2), 2.0))) continue;
 
+                #region Except Chair
+
+                if (LaserSetting.leftTopStart <= angle && LaserSetting.leftTopEnd >= angle) continue;
+                if (LaserSetting.leftBottomStart <= angle && LaserSetting.leftBottomEnd >= angle) continue;
+                if (LaserSetting.rightTopStart <= angle && LaserSetting.rightTopEnd >= angle) continue;
+                if (LaserSetting.rightBottomStart <= angle && LaserSetting.rightBottomEnd >= angle) continue;
+
+                #endregion // Except Chair
+
+
                 logger.Debug("distance = " + distance + " x = " + xPos + "(" + Math.Abs(Math.Sin(2 * currentAngle)) * LaserSetting.diameter / 2 +
                              ")" + "  y = " + yPos + "(" + (Math.Abs(Math.Cos(2 * currentAngle)) + 1) * LaserSetting.diameter / 2 + ")" + "  angular=" + angle);
 
                 DetectPerson = true;
             }
 
-           // PlayOrStopSound();
-
+            //
+            //
+            //
             SendEvent(DetectPerson);
         }
-
-        #region Sound
-        void PlayOrStopSound()
-        {
-            //System.Media.SoundPlayer sndPlayer = new System.Media.SoundPlayer(Environment.CurrentDirectory + @"/ir_begin.wav");
-            //sndPlayer.PlaySync();
-
-            if (DetectPerson)
-            {
-                if (null == Alarm)
-                {
-                    Alarm = new System.Windows.Controls.MediaElement();
-                    Alarm.Source = new Uri(Environment.CurrentDirectory + @"/ir_begin.wav");
-                }
-
-                Alarm.Play();
-            }
-            else
-            {
-                if (null != Alarm)
-                {
-                    Alarm.Pause();
-                }
-            }
-        }
-        #endregion // Sound
 
         #endregion // Parse all data
     }
