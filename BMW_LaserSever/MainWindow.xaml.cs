@@ -141,6 +141,7 @@ namespace BMW_LaserSever
             timerInterval.Content = "Time Interval : " + LaserSetting.timerInterval.ToString();
 
             txtDiameter.Text = LaserSetting.diameter.ToString();
+            txtOffset.Text = LaserSetting.offset.ToString();
 
             leftTopStart.Text = LaserSetting.leftTopStart.ToString();
             leftTopEnd.Text = LaserSetting.leftTopEnd.ToString();
@@ -158,6 +159,7 @@ namespace BMW_LaserSever
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
             LaserSetting.diameter = double.Parse(txtDiameter.Text);
+            LaserSetting.offset = double.Parse(txtOffset.Text);
 
             LaserSetting.leftTopStart = double.Parse(leftTopStart.Text);
             LaserSetting.leftTopEnd = double.Parse(leftTopEnd.Text);

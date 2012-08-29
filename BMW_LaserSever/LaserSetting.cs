@@ -64,6 +64,7 @@ namespace BMW_LaserSever
         public static double angluarCorrection = 0;
 
         public static double diameter = 0;
+        public static double offset = 0;
 
         public static double leftTopStart = 0;
         public static double leftTopEnd = 0;
@@ -116,6 +117,7 @@ namespace BMW_LaserSever
                             XmlNode data = config.SelectSingleNode("Data");
 
                             LaserSetting.diameter = double.Parse(data.Attributes["Diameter"].Value);
+                            LaserSetting.offset = double.Parse(data.Attributes["Offset"].Value);
                             LaserSetting.dataStart = double.Parse(data.Attributes["Start"].Value);
                             LaserSetting.dataEnd = double.Parse(data.Attributes["End"].Value);
                             LaserSetting.angluarCorrection = double.Parse(data.Attributes["Correction"].Value);
@@ -175,6 +177,7 @@ namespace BMW_LaserSever
                             // Data Setting
                             XmlElement data = (XmlElement)config.SelectSingleNode("Data");
                             data.SetAttribute("Diameter", LaserSetting.diameter.ToString());
+                            data.SetAttribute("Offset", LaserSetting.offset.ToString());
                             data.SetAttribute("Correction", LaserSetting.angluarCorrection.ToString());
 
                             // left top

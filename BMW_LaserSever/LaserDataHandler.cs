@@ -224,9 +224,9 @@ namespace BMW_LaserSever
                 if ((LaserSetting.diameter / 2) < Math.Abs(xPos) || Math.Abs(xPos) <= 0) continue;
 
                 yPos = (double)(distance * Math.Sin(currentAngle));
-                if (LaserSetting.diameter < Math.Abs(yPos) || yPos <= 0) continue;
+                if ((LaserSetting.diameter + LaserSetting.offset) < Math.Abs(yPos) || yPos <= LaserSetting.offset) continue;
 
-                if (Math.Pow(radius, 2.0) < (Math.Pow(xPos, 2.0) + Math.Pow(Math.Abs(yPos - LaserSetting.diameter / 2), 2.0))) continue;
+                if (Math.Pow(radius, 2.0) < (Math.Pow(xPos, 2.0) + Math.Pow(Math.Abs(yPos - LaserSetting.diameter / 2 - LaserSetting.offset), 2.0))) continue;
 
                 #region Except Chair
 

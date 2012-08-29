@@ -55,9 +55,12 @@
             <Label Grid.Row="1" Name="laserStart" Content="Scan Start : " FontSize="16" Margin="274,11,0,10" HorizontalAlignment="Left" VerticalAlignment="Center" Height="30" Width="134" />
             <Label Grid.Row="1" Name="laserEnd" Content="Scan End : " FontSize="16" Margin="425,11,0,10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="129" Height="30"/>
                             
-            <Label Grid.Row="2" Name="labelDiameter" Content="Diameter" Height="41" Width="124" FontSize="24" Canvas.Left="181" Canvas.Top="56" Margin="193,17,315,18" />
-            <TextBox Grid.Row="2" Name="txtDiameter" Height="30" Width="100" FontSize="24" Canvas.Left="314" Canvas.Top="62" Text="4000" Margin="317,21,215,25" />
-       
+            <Label Grid.Row="2" Name="labelDiameter" Content="Diameter" Height="41" Width="124" FontSize="24" Canvas.Left="181" Canvas.Top="56" Margin="45,17,463,18" />
+            <TextBox Grid.Row="2" Name="txtDiameter" Height="30" Width="100" FontSize="24" Canvas.Left="314" Canvas.Top="62" Text="4000" Margin="169,21,363,25" />
+
+            <Label Grid.Row="2" Name="labelOffset" Content="Offset" Height="41" FontSize="24" Margin="350,17,193,18" />
+            <TextBox Grid.Row="2" Name="txtOffset" Height="30" Width="100" FontSize="24" Text="4000" Margin="439,21,93,25" />
+
             <Label Grid.Row="3" Content="LeftTop Start" FontSize="24" Margin="0,13,467,140" />
             <TextBox Grid.Row="3" Name="leftTopStart" Text="0" FontSize="24" Height="30" Margin="187,18,331,147"/>
             <Label Grid.Row="3" Content="LeftTop End" FontSize="24" Margin="0,49,467,104" />
